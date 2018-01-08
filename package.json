@@ -13,7 +13,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babelify": "^8.0.0",
     "bower-files": "^4.0.0",
-    "browser-sync": "^2.23.2",
+    "browser-sync": "^2.23.3",
     "browserify": "^14.5.0",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
