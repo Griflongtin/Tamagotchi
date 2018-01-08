@@ -2,8 +2,16 @@ export class Tamagotchi {
   constructor(name) {
     this.name = name;
     this.foodLevel = 10;
+    this.sicknessLevel = 0;
+    this.bordnessLevel = 0;
     this.sleepLevel = 0;
-    this.playLevel = 10;
+  }
+  didItDie() {
+    if ((this.foodLevel === 0) || (this.sicknessLevel === 10) || (this.bordnessLevel === 20)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 // HUNGER
@@ -13,19 +21,35 @@ export class Tamagotchi {
     }, 1000);
   }
 
-  didYouGetEaten() {
-    if (this.foodLevel > 0) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
   feed() {
     this.foodLevel = 10;
   }
+// sickness
+  setSickness() {
+    setInterval(() => {
+      this.sicknessLevel++;
+    }, 5000);
+  }
+  medicate() {
+    this.sicknessLevel = Math.floor((Math.random() * 9));
+  }
 
-// SLEEP
+// PLAY
+  setBordness() {
+    setInterval(() => {
+      this.bordnessLevel++;
+    }, 10000);
+  }
+
+  play() {
+    if(this.bordnessLevel <= 1){
+      this.foodLevel--;
+    } else {
+      this.bordnessLevel += -2;
+    }
+  }
+
+// SLEEP JUST FOR TESTING!
   setSleep() {
     setInterval(() => {
       this.sleepLevel++;
@@ -39,22 +63,3 @@ export class Tamagotchi {
   }
 
 }
-
-
-
-
-// TAMAGOTCHI GAME
-// export class GameFeld {
-//   constructor() {
-//     this.
-//   }
-// }
-//
-//
-// this.hunger;
-// this.happy;
-// this.bracelet;
-// this.discipline;
-// this.sick;
-// this.life;
-// this.sleep;
