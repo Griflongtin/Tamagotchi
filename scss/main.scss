@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  z-index: -1;
+  background-color: #3b4045;
+  height: 100vh;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div {
+    position: relative;
+    img {
+      z-index: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      }
+    .buttonOne, .buttonTwo, .buttonThree {
+      width: 60px;
+      height: 20px;
+      position: absolute;
+      background-color: green;
+      span{
+        position: relative;
+        background-color: green;
+        width: 60px;
+        height: 21px;
+        left: -7px;
+        top: -3px;
+        display: block;
+        transform: rotate(90deg);
+      }
+    }
+    .one {
+      left: -128px;
+      bottom: -217px;
+      span {
+        top: -16px;
+        left: -9px;
+      }
+    }
+    .two {
+      left: -50px;
+      bottom: -236px;
+    }
+    .three {
+      left: 29px;
+      bottom: -217px;
+
+    }
+  }
+}

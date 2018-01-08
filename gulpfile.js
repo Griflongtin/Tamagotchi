@@ -1,10 +1,11 @@
-var gulp = require('gulp'),
+const gulp = require('gulp'),
 browserify = require('browserify'),
 source = require('vinyl-source-stream'),
 concat = require('gulp-concat'),
 uglify = require('gulp-uglify'),
 utilities = require('gulp-util'),
 jshint = require('gulp-jshint'),
+sourcemaps = require('gulp-sourcemaps'),
 del = require('del'),
 lib = require('bower-files')({
   "overrides":{
@@ -19,6 +20,7 @@ lib = require('bower-files')({
 }),
 browserSync = require('browser-sync').create(),
 buildProduction = utilities.env.production,
+sass = require('gulp-sass'),
 babelify = require("babelify");
 //
 //#####################################
@@ -28,6 +30,12 @@ gulp.task('bowerJS', function () { // function start for backend logic
   .pipe(concat('vendor.min.js')) // contat the files together
   .pipe(uglify()) //make them samll
   .pipe(gulp.dest('./build/js')); // playes them in the build/js file for the html
+});
+
+gulp.task('bowerCSS', function () {
+  return gulp.src(lib.ext('css').files)
+    .pipe(concat('vendor.css'))
+    .pipe(gulp.dest('./build/css'));
 });
 
 gulp.task('concatInterface', function(){ // function start for ui logic
@@ -82,7 +90,7 @@ gulp.task('jsBrowserify', ['concatInterface'], function() {
 //
 //#####################################
 // start tasks
-gulp.task('bower', ['bowerJS']); // runs our js build and our css build
+gulp.task('bower', ['bowerJS', 'bowerCSS']); // runs our js build and our css build
 
 gulp.task('build', ['clean'], function(){
   if (buildProduction) {
@@ -91,17 +99,21 @@ gulp.task('build', ['clean'], function(){
     gulp.start('jsBrowserify');
   }
   gulp.start('bower');
+  gulp.start('cssBuild');
 });
 
-gulp.task('server', function() {
+gulp.task('server', ['build'], function() {
   browserSync.init({
     server: {
       baseDir: "./",
       index: "index.html"
     }
   });
+
   gulp.watch(['js/*.js'], ['jsBuild']);
   gulp.watch(['bower.json'], ['bowerBuild']);
+  gulp.watch(['*.html'], ['htmlBuild']);
+  gulp.watch('scss/*.scss', ['cssBuild']);
 });
 //#####################################
 //
@@ -117,3 +129,15 @@ gulp.task('bowerBuild', ['bower'], function(){
 });
 //#####################################
 //
+gulp.task('htmlBuild', ['bower'], function(){
+  browserSync.reload();
+});
+
+gulp.task('cssBuild', ['bower'], function(){
+  return gulp.src('scss/*.scss')
+  .pipe(sourcemaps.init())
+  .pipe(sass())
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest('./build/css'))
+  .pipe(browserSync.stream());
+});
