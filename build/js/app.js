@@ -1,4 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+exports.apiKey = "nl4lWk4Aky4U87OWwueNk6qr9RKpxmG0";
+
+},{}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -109,10 +112,12 @@ var Tamagotchi = exports.Tamagotchi = function () {
   return Tamagotchi;
 }();
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 'use strict';
 
 var _tamagotchi = require('./../js/tamagotchi.js');
+
+var apiKey = require('./../.env').apiKey;
 
 $(document).ready(function () {
   var gotchi = new _tamagotchi.Tamagotchi('Gingiffin');
@@ -128,12 +133,29 @@ $(document).ready(function () {
   $('.buttonThree').click(function () {
     gotchi.play();
   });
+  var stop = setInterval(function () {
+    if (gotchi.didItDie() === true) {
+      alert('gotchi died');
+      clearInterval(stop);
+    }
+    $('#food-level-output span#food').html(gotchi.foodLevel);
+    $('#sick-level-output span#sick').html(gotchi.sicknessLevel);
+    $('#bord-level-output span#bord').html(gotchi.bordnessLevel);
+  }, 100);
+
+  $.ajax({
+    url: 'http://api.giphy.com/v1/gifs/14uXQbPS73Y3qU?api_key=' + apiKey,
+    type: 'GET',
+    data: {
+      format: 'json'
+    },
+    success: function success(response) {
+      $('.giphy-output').html('<img src="' + response.data.images.fixed_width.url + '">');
+    },
+    error: function error() {
+      $('#errors').text("There was an error processing your request. Please try again.");
+    }
+  });
 });
 
-setInterval(function () {
-  $('#food-level-output').text(gotchi.foodLevel);
-  $('#sick-level-output').text(gotchi.sicknessLevel);
-  $('#bord-level-output').text(gotchi.bordnessLevel);
-}, 100);
-
-},{"./../js/tamagotchi.js":1}]},{},[2]);
+},{"./../.env":1,"./../js/tamagotchi.js":2}]},{},[3]);

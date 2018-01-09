@@ -4,3 +4,5 @@ sass-cache/
 *.map
 bower_components/
 tmp/
+build/
+.env

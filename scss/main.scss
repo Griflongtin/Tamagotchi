@@ -57,21 +57,29 @@ body {
     }
   }
 }
-.outputs {
-  text-align: center;
-  font-size: 15px;
+.giphy {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: -15px;
+  bottom: -520px;
+}
+.output-holder {
   position: absolute;
   background-color: red;
-  width: 120px;
-  height: 60px;
-  bottom: -400px;
-}
-#food-level-output {
-  left: -200px;
-}
-#sick-level-output {
-  left: -65px;
-}
-#bord-level-output {
-  left: 70px;
+  width: 500px;
+  height: 80px;
+  transform: translate(-50%, -50%);
+  left: -15px;
+  bottom: -430px;
+  display: flex;
+  justify-content: space-around;
+  .outputs {
+    text-align: center;
+    background-color: pink;
+    margin: 10px;
+    padding: 5px 10px;
+    span {
+      font-size: 30px;
+    }
+  }
 }
