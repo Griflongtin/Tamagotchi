@@ -6,16 +6,17 @@ describe('Tamagotchi', function() {
   beforeEach(function() {
     jasmine.clock().install();
     gotchi.setHunger();
-    gotchi.setSleep();
+    gotchi.setSickness();
     gotchi.setBordness();
+    gotchi.setSleep();
   });
 
   afterEach(function() {
     jasmine.clock().uninstall();
     gotchi.foodLevel = 10;
-    gotchi.sleepLevel = 0;
-    gotchi.playLevel = 10;
+    gotchi.sicknessLevel = 0;
     gotchi.bordnessLevel = 0;
+    gotchi.sleepLevel = 0;
   });
 
   it('should have a name and a food level of 10 when it is created', function() {

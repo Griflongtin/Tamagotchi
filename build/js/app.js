@@ -114,4 +114,26 @@ var Tamagotchi = exports.Tamagotchi = function () {
 
 var _tamagotchi = require('./../js/tamagotchi.js');
 
+$(document).ready(function () {
+  var gotchi = new _tamagotchi.Tamagotchi('Gingiffin');
+  gotchi.setHunger();
+  gotchi.setSickness();
+  gotchi.setBordness();
+  $('.buttonOne').click(function () {
+    gotchi.feed();
+  });
+  $('.buttonTwo').click(function () {
+    gotchi.medicate();
+  });
+  $('.buttonThree').click(function () {
+    gotchi.play();
+  });
+});
+
+setInterval(function () {
+  $('#food-level-output').text(gotchi.foodLevel);
+  $('#sick-level-output').text(gotchi.sicknessLevel);
+  $('#bord-level-output').text(gotchi.bordnessLevel);
+}, 100);
+
 },{"./../js/tamagotchi.js":1}]},{},[2]);

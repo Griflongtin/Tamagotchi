@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: monospace;
 }
 
 body {
@@ -26,7 +27,6 @@ body {
       background-color: transparent;
       span{
         padding-top: 1px;
-        font-family: monospace;
         font-size: 15px;
         position: relative;
         z-index: 50;
@@ -56,4 +56,22 @@ body {
       transform: rotate(90deg);
     }
   }
+}
+.outputs {
+  text-align: center;
+  font-size: 15px;
+  position: absolute;
+  background-color: red;
+  width: 120px;
+  height: 60px;
+  bottom: -400px;
+}
+#food-level-output {
+  left: -200px;
+}
+#sick-level-output {
+  left: -65px;
+}
+#bord-level-output {
+  left: 70px;
 }
