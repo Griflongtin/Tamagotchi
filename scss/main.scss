@@ -13,44 +13,47 @@ body {
   div {
     position: relative;
     img {
-      z-index: 0;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       }
     .buttonOne, .buttonTwo, .buttonThree {
+      border-style: none;
       width: 60px;
       height: 20px;
       position: absolute;
-      background-color: green;
+      background-color: transparent;
       span{
+        padding-top: 1px;
+        font-family: monospace;
+        font-size: 15px;
         position: relative;
-        background-color: green;
+        z-index: 50;
+        background-color: transparent;
         width: 60px;
         height: 21px;
         left: -7px;
         top: -3px;
         display: block;
-        transform: rotate(90deg);
+        transform: rotate(-90deg);
       }
     }
     .one {
+      z-index: 100;
       left: -128px;
       bottom: -217px;
-      span {
-        top: -16px;
-        left: -9px;
-      }
+      transform: rotate(90deg);
     }
     .two {
       left: -50px;
       bottom: -236px;
+      transform: rotate(90deg);
     }
     .three {
       left: 29px;
       bottom: -217px;
-
+      transform: rotate(90deg);
     }
   }
 }
