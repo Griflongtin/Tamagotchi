@@ -5,7 +5,7 @@
 
 body {
   z-index: -1;
-  background-color: #3b4045;
+  background-color: #0052ff;
   height: 100vh;
   width: auto;
   display: flex;
@@ -56,30 +56,40 @@ body {
       transform: rotate(90deg);
     }
   }
-}
-.giphy {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  left: -15px;
-  bottom: -520px;
-}
-.output-holder {
-  position: absolute;
-  background-color: red;
-  width: 500px;
-  height: 80px;
-  transform: translate(-50%, -50%);
-  left: -15px;
-  bottom: -430px;
-  display: flex;
-  justify-content: space-around;
-  .outputs {
-    text-align: center;
-    background-color: pink;
-    margin: 10px;
-    padding: 5px 10px;
-    span {
-      font-size: 30px;
+  .giphy {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: -15px;
+    bottom: -520px;
+  }
+  .output-holder {
+    position: absolute;
+    background-color: red;
+    width: 500px;
+    height: 80px;
+    transform: translate(-50%, -50%);
+    left: -15px;
+    bottom: -430px;
+    display: flex;
+    justify-content: space-around;
+    .outputs {
+      text-align: center;
+      background-color: pink;
+      margin: 10px;
+      padding: 5px 10px;
+      span {
+        font-size: 30px;
+      }
+    }
+  }
+  .dead-screen {
+    display: none;
+    position: absolute;
+    bottom: -59px;
+    left: -20px;
+    img {
+      width: 218px;
+      height: 199px;
     }
   }
 }

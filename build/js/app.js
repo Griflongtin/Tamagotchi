@@ -26,7 +26,7 @@ var Tamagotchi = exports.Tamagotchi = function () {
   _createClass(Tamagotchi, [{
     key: "didItDie",
     value: function didItDie() {
-      if (this.foodLevel === 0 || this.sicknessLevel === 10 || this.bordnessLevel === 20) {
+      if (this.foodLevel <= 0 || this.sicknessLevel >= 10 || this.bordnessLevel >= 20) {
         return true;
       } else {
         return false;
@@ -135,26 +135,18 @@ $(document).ready(function () {
   });
   var stop = setInterval(function () {
     if (gotchi.didItDie() === true) {
-      alert('gotchi died');
+      $('.dead-screen').show();
       clearInterval(stop);
     }
     $('#food-level-output span#food').html(gotchi.foodLevel);
     $('#sick-level-output span#sick').html(gotchi.sicknessLevel);
     $('#bord-level-output span#bord').html(gotchi.bordnessLevel);
-  }, 100);
+  }, 500);
 
-  $.ajax({
-    url: 'http://api.giphy.com/v1/gifs/14uXQbPS73Y3qU?api_key=' + apiKey,
-    type: 'GET',
-    data: {
-      format: 'json'
-    },
-    success: function success(response) {
-      $('.giphy-output').html('<img src="' + response.data.images.fixed_width.url + '">');
-    },
-    error: function error() {
-      $('#errors').text("There was an error processing your request. Please try again.");
-    }
+  $.get('http://api.giphy.com/v1/gifs/14uXQbPS73Y3qU?api_key=' + apiKey).then(function (response) {
+    $('.giphy-output').html('<img src="' + response.data.images.fixed_width.url + '">');
+  }).fail(function (error) {
+    $('#errors').text('There was an error processing your request. Please try again.');
   });
 });
 

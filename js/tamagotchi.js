@@ -7,7 +7,7 @@ export class Tamagotchi {
     this.sleepLevel = 0;
   }
   didItDie() {
-    if ((this.foodLevel === 0) || (this.sicknessLevel === 10) || (this.bordnessLevel === 20)) {
+    if ((this.foodLevel <= 0) || (this.sicknessLevel >= 10) || (this.bordnessLevel >= 20)) {
       return true;
     } else {
       return false;
