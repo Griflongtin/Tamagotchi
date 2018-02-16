@@ -3,7 +3,7 @@
   "description": "",
   "main": "",
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/Griflongtin/Tamagotchi",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -16,5 +16,8 @@
   },
   "devDependencies": {
     "jquery": "^3.2.1"
-  }
+  },
+  "authors": [
+    "Griffin <griflongtin@live.com>"
+  ]
 }

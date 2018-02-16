@@ -4,7 +4,6 @@ export class Tamagotchi {
     this.foodLevel = 10;
     this.sicknessLevel = 0;
     this.bordnessLevel = 0;
-    this.sleepLevel = 0;
   }
   didItDie() {
     if ((this.foodLevel <= 0) || (this.sicknessLevel >= 10) || (this.bordnessLevel >= 20)) {
@@ -13,7 +12,7 @@ export class Tamagotchi {
       return false;
     }
   }
-
+  
 // HUNGER
   setHunger() {
     setInterval(() => {
@@ -47,19 +46,6 @@ export class Tamagotchi {
     } else {
       this.bordnessLevel += -2;
     }
-  }
-
-// SLEEP JUST FOR TESTING!
-  setSleep() {
-    setInterval(() => {
-      this.sleepLevel++;
-    }, 1000);
-  }
-
-  sleepMode() {
-    setTimeout(() => {
-      this.sleepLevel = 0;
-    },5000);
   }
 
 }
